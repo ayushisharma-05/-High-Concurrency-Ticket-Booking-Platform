@@ -1,0 +1,15 @@
+{
+  "name": "ticket-booking-platform",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm --prefix server run dev\" \"npm --prefix ui run dev\"",
+    "server": "npm --prefix server run dev",
+    "client": "npm --prefix ui run dev",
+    "install-all": "npm --prefix server install && npm --prefix ui install",
+    "test": "npm --prefix server test"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

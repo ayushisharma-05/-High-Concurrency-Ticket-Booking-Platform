@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: ticket-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  server:
+    build: ./server
+    container_name: ticket-server
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./server/.env
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URI: mongodb://mongo:27017/ticket-booking
+
+  ui:
+    build: ./ui
+    container_name: ticket-ui
+    ports:
+      - "5173:5173"
+    depends_on:
+      - server
+
+volumes:
+  mongo-data:
